@@ -1,0 +1,25 @@
+
+
+<div style="margin-left: 20px; margin-top: 30px">
+
+    <div *ngIf="myProjects">
+
+        <div fxLayout="row">
+            <div *ngFor="let project of myProjects">
+                <div style="margin-right: 20px">
+                        <app-project [project]="project"></app-project>
+                </div>
+            </div>
+            <mat-card fxLayoutAlign="center center" >
+                <mat-card-content fxLayout="column">
+                    <mat-card-title>Create a new project</mat-card-title>
+                    <mat-form-field>
+                        <input matInput placeholder="Project name" >
+                    </mat-form-field>
+                    <br/>
+                    <button mat-raised-button color="primary">Create Project</button>
+                </mat-card-content>
+            </mat-card>                
+        </div>
+    </div>
+</div>

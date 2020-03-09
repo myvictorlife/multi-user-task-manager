@@ -1,0 +1,26 @@
+<mat-card class="project-card">
+    <mat-card-header>
+    <mat-card-title>{{ project.name }}</mat-card-title>
+    <div fxFlex></div>
+    <i class="material-icons  icons-header">edit</i>
+    <i class="material-icons icons-header">delete</i>
+    </mat-card-header>
+    <mat-card-content>
+        <h2>To Do</h2>
+        <div *ngFor="let task of tasks">
+            <p *ngIf="task.status === 'todo'">{{ task.description }}</p>
+        </div>
+        <h2>Done</h2>
+        <div *ngFor="let task of tasks">
+            <p *ngIf="task.status === 'done'">{{ task.description }}</p>
+        </div>
+        <hr/>
+        
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+            <mat-form-field>
+                <input matInput placeholder="Task">
+            </mat-form-field>
+            <button mat-raised-button color="primary">Add</button>
+        </div>
+    </mat-card-content>
+</mat-card>
