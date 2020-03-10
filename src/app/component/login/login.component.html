@@ -8,24 +8,24 @@
 
     <form [formGroup]="loginForm" (ngSubmit)="authentication()" fxLayout="column">
       <mat-form-field>
-        <mat-label>Email</mat-label>
+        <mat-label translate>Login.Email</mat-label>
         <input matInput formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Email">
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Email must be a valid email address</div>
+            <div *ngIf="f.email.errors.required" translate>Login.EmailMustBaValidEmailAddress</div>
         </div>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Password</mat-label>
+        <mat-label translate>Login.Password</mat-label>
         <input matInput formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Password">
         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-          <div *ngIf="f.password.errors.required">Password is required</div>
-          <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+          <div *ngIf="f.password.errors.required" translate>Login.PasswordIsRequired</div>
+          <div *ngIf="f.password.errors.minlength" translate>Login.PasswordMustBeAtLeast6Characters</div>
         </div>
       </mat-form-field>
 
       <div class="form-group">
-        <button mat-stroked-button  type="submit">Enter</button>
+        <button mat-stroked-button  type="submit">{{ 'Login.Enter' | translate}}</button>
       </div>
     </form>
 

@@ -6,8 +6,8 @@
         <div *ngFor="let task of category.tasks">
         <p *ngIf="task.status === category.status">{{ task.title }}</p>
             <mat-card-actions *ngIf="!category.completed">
-                <button mat-raised-button (click)="remove(task)" type="submit" color="danger">Remove</button>
-                <button mat-raised-button (click)="openDialogToEdit(task)" type="submit" color="primary">Edit</button>
+            <button mat-raised-button (click)="remove(task)" type="submit" color="danger">{{ 'Task.Remove' | translate}}</button>
+            <button mat-raised-button (click)="openDialogToEdit(task)" type="submit" color="primary" translate>{{ 'Task.Edit' | translate }}</button>
             </mat-card-actions>
         </div>
     </mat-card-content>

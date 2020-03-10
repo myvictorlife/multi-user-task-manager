@@ -17,7 +17,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { RegisterComponent } from './component/register/register.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { SnackBarComponent } from './component/snack-bar/snack-bar.component';
 import { StoreModule } from '@ngrx/store';
@@ -26,6 +26,14 @@ import { TaskComponent } from './component/task/task.component';
 import { EditProjectComponent } from './component/dialogs/edit-project/edit-project.component';
 import { MaterialModule } from './material/material.module';
 import { DatePipe } from '@angular/common';
+
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -57,6 +65,14 @@ import { DatePipe } from '@angular/common';
         strictActionImmutability: true
       }
     }),
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
   ],
   providers: [
     {

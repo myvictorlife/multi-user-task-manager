@@ -17,7 +17,7 @@
             <mat-form-field>
                 <input matInput [(ngModel)]="newTask.title" placeholder="Task">
             </mat-form-field>
-            <button mat-raised-button (click)="addTask()" color="primary">Add</button>
+        <button mat-raised-button (click)="addTask()" color="primary">{{ 'Project.Add' | translate}}</button>
         </div>
     </mat-card-content>
 </mat-card>
