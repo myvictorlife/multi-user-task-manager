@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Project } from '../models/project';
 import { ProjectService } from '../service/project.service';
-
+import { Project } from '../models/project';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -10,16 +9,27 @@ import { ProjectService } from '../service/project.service';
 export class DashboardComponent implements OnInit {
 
   myProjects: Array<Project>;
-
+  project = {} as Project;
 
   constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
-    this.myProjects = this.projectService.get();
+    this.findProjects();
   }
 
   findProjects() {
+    this.projectService.get().subscribe( (result: Array<Project>) => {
+      this.myProjects = result;
+    });
+  }
 
+  createProject() {
+    this.projectService.create(this.project).subscribe( result => {
+      console.log(result);
+      this.findProjects();
+    }, error => {
+      console.log(error);
+    })
   }
 
 }

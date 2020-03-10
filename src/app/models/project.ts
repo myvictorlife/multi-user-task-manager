@@ -1,6 +1,10 @@
+import { Task } from './task';
+
 export interface Project {
-    id: string;
-    name: string;
-    cration_date: string;
-    finish_date: string;
+    _id: string;
+    title: string;
+    description: string;
+    tasks: Array<Task>;
+    createAt: string;
+    finishAt?: string;
 }

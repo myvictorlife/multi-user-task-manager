@@ -9,13 +9,8 @@ import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatCardModule } from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatSelectModule} from '@angular/material/select';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+
 
 import { LoginComponent } from './component/login/login.component';
 import { HeaderComponent } from './component/header/header.component';
@@ -25,6 +20,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { SnackBarComponent } from './component/snack-bar/snack-bar.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { TaskComponent } from './component/task/task.component';
+import { EditProjectComponent } from './component/dialogs/edit-project/edit-project.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +36,9 @@ import { SnackBarComponent } from './component/snack-bar/snack-bar.component';
     HeaderComponent,
     RegisterComponent,
     SnackBarComponent,
+    TaskComponent,
+    ProjectComponent,
+    EditProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -45,21 +48,14 @@ import { SnackBarComponent } from './component/snack-bar/snack-bar.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatCardModule,
-    MatButtonModule,
-    MatInputModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatSelectModule,
-    MatSnackBarModule,
-  ],
-  exports: [
-    MatCardModule,
-    MatButtonModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatSelectModule,
-    MatSnackBarModule,
+    MaterialModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
   ],
   providers: [
     {

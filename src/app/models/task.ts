@@ -1,7 +1,11 @@
 export interface Task {
-    id: string;
+    _id: string;
+    title: string;
     description: string;
     status: string;
-    cration_date: string;
-    finish_date: string;
+    assignedTo: string;
+    completed: boolean;
+    project: string;
+    createAt: string;
+    finishAt: string;
 }
