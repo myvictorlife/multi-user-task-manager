@@ -4,6 +4,8 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
+# [Architecture](https://drive.google.com/file/d/1osDHl3E9FPtqR4rdQTK0afOEIAPKMg7u/view?usp=sharing)
+
 ### This project was generated with Angular CLI version 9.0.2.
 The application should include the following features:
 1. User Registration
