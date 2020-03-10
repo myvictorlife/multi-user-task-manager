@@ -1,6 +1,21 @@
-# MultiUserTaskManager
+# EDirectInsure TODO List
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
+![](https://res.cloudinary.com/doiz6iue3/image/upload/v1583865095/edirect_kqnwdj.svg) ![image](https://res.cloudinary.com/doiz6iue3/image/upload/v1583865983/angular_dgxs59.png)
+
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+
+### This project was generated with Angular CLI version 9.0.2.
+The application should include the following features:
+1. User Registration
+2. User Authentication (login/logout)
+3. Visualize, add, edit and remove user projects
+4. Visualize, add, edit and remove tasks associated with the projects
+
+# Config Environments
+* Base URL: 'http://localhost:3000'
+
+# Multi-user Task Manager
+This challenge involves the creation of a multi-user task manager web application
 
 ## Development server
 
