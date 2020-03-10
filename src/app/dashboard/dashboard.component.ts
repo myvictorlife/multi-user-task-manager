@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
 
   createProject() {
     this.projectService.create(this.project).subscribe( result => {
-      console.log(result);
+      this.project = {} as Project;
       this.findProjects();
     }, error => {
       console.log(error);

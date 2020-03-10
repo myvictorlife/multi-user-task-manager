@@ -33,7 +33,7 @@ export class ProjectComponent implements OnInit {
     color: '#69F0AE'
   }];
 
-  constructor(private projectService: ProjectService, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
+  constructor(private projectService: ProjectService, public dialog: MatDialog, private nackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     const tasks = this.project.tasks;
@@ -53,12 +53,13 @@ export class ProjectComponent implements OnInit {
 
   addTask() {
     if(this.newTask && this.newTask.title) {
-      this.newTask.status = 'To Do';
+      this.newTask.status = this.categories[0].status;
+
       this.project.tasks.push(this.newTask);
       this.projectService.update(this.project).subscribe( result => {
         this.project = result;
         this.newTask = {} as Task;
-        this._snackBar.open('New Task Added', 'Undo', { duration: 3000 });
+        this.nackBar.open('New Task Added', 'Undo', { duration: 3000 });
         this.getTasks(this.project.tasks)
       }, error => {
         console.log(error);
@@ -69,13 +70,13 @@ export class ProjectComponent implements OnInit {
   edit(title: string) {
     this.project.title = title;
     this.projectService.update(this.project).subscribe( result => {
-      this._snackBar.open('Project Removed Successfully', 'Undo', { duration: 3000 });
+      this.nackBar.open('Project Removed Successfully', 'Undo', { duration: 3000 });
     });
   }
 
   deleteProject() {
     this.projectService.delete(this.project._id).subscribe( result => {
-      this._snackBar.open('Project Removed Successfully', 'Undo', { duration: 3000 });
+      this.nackBar.open('Project Removed Successfully', 'Undo', { duration: 3000 });
     })
   }
 
@@ -92,7 +93,7 @@ export class ProjectComponent implements OnInit {
   }
 
   openSnackBar(message: string) {
-    this._snackBar.openFromComponent(SnackBarComponent, {
+    this.nackBar.openFromComponent(SnackBarComponent, {
       duration: 5000,
       data: message
     });

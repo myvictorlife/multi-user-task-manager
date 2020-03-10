@@ -20,7 +20,7 @@ export class UserService {
    }
 
   saveUser(user: User) {
-    localStorage.setItem('user', JSON.stringify(user))
+    localStorage.setItem('user', JSON.stringify(user));
     this.user = user;
   }
 
@@ -41,6 +41,10 @@ export class UserService {
 
   getUser() {
     return this.user;
+  }
+
+  logout() {
+    localStorage.clear();
   }
 
 }

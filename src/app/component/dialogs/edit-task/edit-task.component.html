@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>{{data.headerName}}</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.title">
+  </mat-form-field>
+  <mat-form-field>
+        <mat-label>Status</mat-label>
+        <select matNativeControl [(ngModel)]="data.status" required>
+        <option *ngFor="let category of categories" value="{{category.status}}">{{category.status}}</option>
+        </select>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>
+{{ data | json }}

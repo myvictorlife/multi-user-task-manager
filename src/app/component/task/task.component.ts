@@ -2,9 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProjectService } from 'src/app/service/project.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { EditProjectComponent } from '../dialogs/edit-project/edit-project.component';
 import { Task } from '../../models/task';
-import { DatePipe } from '@angular/common';
+import { EditTaskComponent } from '../dialogs/edit-task/edit-task.component';
 
 @Component({
   selector: 'app-task',
@@ -18,8 +17,7 @@ export class TaskComponent implements OnInit {
 
   @Output() projectChange = new EventEmitter<boolean>();
 
-  constructor(private projectService: ProjectService, public dialog: MatDialog, private _snackBar: MatSnackBar,
-    public datepipe: DatePipe) { }
+  constructor(private projectService: ProjectService, public dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -27,13 +25,13 @@ export class TaskComponent implements OnInit {
   remove(task: Task) {
     this.project.tasks = this.project.tasks.filter( x => x._id !== task._id);
     this.projectService.update(this.project).subscribe( () =>{
-     this._snackBar.open('Project Removed Successfully', 'Undo', { duration: 3000 })
+     this.snackBar.open('Project Removed Successfully', 'Undo', { duration: 3000 })
      this.projectChange.emit(true);
     });
   }
 
   openDialogToEdit(task: Task): void {
-    const dialogRef = this.dialog.open(EditProjectComponent, {
+    const dialogRef = this.dialog.open(EditTaskComponent, {
       width: '250px',
       data: { headerName: 'Edit Task', title: task.title }
     });
@@ -41,7 +39,8 @@ export class TaskComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       if(result) {
-        task.title = result
+        task.title = result.title;
+        task.status = result.status;
       }
       this.update();
     });
@@ -50,7 +49,7 @@ export class TaskComponent implements OnInit {
   update() {
     this.projectService.update(this.project).subscribe( result => {
       console.log(result);
-      this._snackBar.open('Updated Successfully', 'Undo', { duration: 3000 });
+      this.snackBar.open('Updated Successfully', 'Undo', { duration: 3000 });
     }, error => {
       console.log(error);
     });
@@ -62,3 +61,14 @@ export class TaskComponent implements OnInit {
   }
 
 }
+
+
+// {
+//   "completed": false,
+//   "_id": "5e67a8bf1315bc3e997a1be9",
+//   "title": "Nova tarefa 2",
+//   "assignedTo": "5e674c7d305d590d8db0371a",
+//   "project": "5e67a8bf1315bc3e997a1be8",
+//   "createAt": "2020-03-10T14:48:31.220Z",
+//   "__v": 0
+// }

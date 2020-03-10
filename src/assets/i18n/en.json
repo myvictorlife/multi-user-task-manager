@@ -1,5 +1,10 @@
 {
     "company" : "EDirectInsure TODO List - EN",
+    "Dashboard" : {
+        "CreateaNewProject" : "Create a new project",
+        "ProjectName" : "Project name",
+        "CreateProject" : "Create Project"
+    },
     "Login" : {
         "Title" : "Login",
         "Email" : "Email",

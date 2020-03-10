@@ -1,12 +1,11 @@
 
-<div class="login-wrapper" fxLayout="column" fxLayoutAlign="center center" style="height: 70%" >
-
-  <mat-card class="box">
+<div align="center" class="center" fxFlex="33" fxFlex.sm="100" fxFlex.xs="100">
+  <mat-card class="box" >
     <mat-card-header>
       <mat-card-title>Log in</mat-card-title>
     </mat-card-header>
 
-    <form [formGroup]="loginForm" (ngSubmit)="authentication()" fxLayout="column">
+    <form [formGroup]="loginForm" (ngSubmit)="authentication()" fxLayout="column" >
       <mat-form-field>
         <mat-label translate>Login.Email</mat-label>
         <input matInput formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Email">

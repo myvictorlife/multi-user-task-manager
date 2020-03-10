@@ -25,10 +25,10 @@ import { reducers, metaReducers } from './reducers';
 import { TaskComponent } from './component/task/task.component';
 import { EditProjectComponent } from './component/dialogs/edit-project/edit-project.component';
 import { MaterialModule } from './material/material.module';
-import { DatePipe } from '@angular/common';
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { EditTaskComponent } from './component/dialogs/edit-task/edit-task.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -47,7 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SnackBarComponent,
     TaskComponent,
     ProjectComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -79,8 +80,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    },
-    DatePipe
+    }
   ],
   bootstrap: [AppComponent]
 })

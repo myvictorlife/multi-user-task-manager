@@ -1,23 +1,21 @@
 
-<div style="margin-left: 20px; margin-top: 30px">
-
+<div >
     <div *ngIf="!myProjects">
         <mat-spinner></mat-spinner>
     </div>
 
     <div fxLayout="row wrap" fxLayoutGap="25px" >
-        <div *ngFor="let project of myProjects" fxFlex="20" fxFlexOffset="10%">
+        <div *ngFor="let project of myProjects"  >
             <app-project [project]="project"></app-project>
         </div>
-        <mat-card fxFlex="20">
+        <mat-card fxLayoutAlign="center center">
             <mat-card-content>
-                <mat-card-title>Create a new project</mat-card-title>
+                <mat-card-title translate>Dashboard.CreateaNewProject</mat-card-title>
                 <mat-form-field>
-                    <input matInput [(ngModel)]="project.title" placeholder="Project name" >
+                    <input matInput [(ngModel)]="project.title" placeholder="{{'Dashboard.ProjectName' | translate}}" >
                 </mat-form-field>
                 <br/>
-                <br/>
-                <button mat-raised-button (click)="createProject()" color="primary">Create Project</button>
+                <button mat-raised-button [disabled]="!project.title" (click)="createProject()" color="primary" translate>{{ 'Dashboard.CreateProject' | translate}}</button>
             </mat-card-content>
         </mat-card> 
     </div>
