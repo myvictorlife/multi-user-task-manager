@@ -9,8 +9,14 @@
         <span>EDirectInsure TODO List</span>   
     </div>
     <span class="fill-space"></span>
-    <span>
+    <span *ngIf="!user">
       <a mat-button routerLink="dashboard"  routerLinkActive="active">Log in</a>
       <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a>
     </span>
+
+    <span *ngIf="user">
+      <a mat-button routerLink="dashboard"  routerLinkActive="active">{{ user.name }}</a>
+      <a mat-button mat-raised-button (click)="logout()" routerLinkActive="active">Logout</a>
+    </span>
+
   </mat-toolbar>

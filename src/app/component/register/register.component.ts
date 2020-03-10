@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ConfirmPassword } from '../../validator/confirm-passsword';
 import { UserService } from '../../service/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
+import { Router } from '@angular/router';
+import { TokenService } from '../../../app/service/token.service';
+import { UserResponse } from '../../models/user';
 
 @Component({
   selector: 'app-register',
@@ -13,9 +18,14 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService,
+    private _snackBar: MatSnackBar, private router: Router, private tokenService: TokenService) { }
 
   ngOnInit(): void {
+    this.initForm();
+  }
+
+  initForm() {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -23,6 +33,13 @@ export class RegisterComponent implements OnInit {
       confirmPassword: ['', Validators.required]
     }, {
         validator: ConfirmPassword('password', 'confirmPassword')
+    });
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      duration: 5000,
+      data: message
     });
   }
 
@@ -37,6 +54,13 @@ export class RegisterComponent implements OnInit {
         return;
     }
 
-    this.userService.create(this.registerForm.value)
+    this.userService.create(this.registerForm.value).subscribe( (result: UserResponse) => {
+      this.tokenService.saveToken(result.token);
+      this.userService.saveUser(result.user);
+
+      this.router.navigate(['/dashboard']);
+    }, error => {
+      this.openSnackBar(error ? error.error.error : 'Server Error');
+    })
   }
 }
