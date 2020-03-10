@@ -1,10 +1,10 @@
 <mat-card style="margin: 15px;">
     <mat-card-content>
         <mat-chip-list>
-            <mat-chip [ngStyle]="{ backgroundColor: category.color }" selected>{{category.status}}</mat-chip>
+        <mat-chip matTooltip="{{ formatDate(category.createAt) }}" [ngStyle]="{ backgroundColor: category.color }" selected>{{category.status}}</mat-chip>
         </mat-chip-list>
         <div *ngFor="let task of category.tasks">
-            <p *ngIf="task.status === category.status">{{ task.title }}</p>
+        <p *ngIf="task.status === category.status">{{ task.title }}</p>
             <mat-card-actions *ngIf="!category.completed">
                 <button mat-raised-button (click)="remove(task)" type="submit" color="danger">Remove</button>
                 <button mat-raised-button (click)="openDialogToEdit(task)" type="submit" color="primary">Edit</button>

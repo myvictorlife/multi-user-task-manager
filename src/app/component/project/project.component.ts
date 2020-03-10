@@ -37,13 +37,17 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit(): void {
     const tasks = this.project.tasks;
+    this.getTasks(tasks)
+  }
 
-    for(let category of this.categories){
+  getTasks(tasks: Array<Task>) {
+    for(const category of this.categories) {
+      category.tasks = [];
       this.tasks = tasks.filter( task => {
         if (task.status === category.status){
-          category.tasks.push(task)
+          category.tasks.push(task);
         }
-      })
+      });
     }
   }
 
@@ -53,6 +57,9 @@ export class ProjectComponent implements OnInit {
       this.project.tasks.push(this.newTask);
       this.projectService.update(this.project).subscribe( result => {
         this.project = result;
+        this.newTask = {} as Task;
+        this._snackBar.open('New Task Added', 'Undo', { duration: 3000 });
+        this.getTasks(this.project.tasks)
       }, error => {
         console.log(error);
       })
@@ -62,15 +69,13 @@ export class ProjectComponent implements OnInit {
   edit(title: string) {
     this.project.title = title;
     this.projectService.update(this.project).subscribe( result => {
-      console.log(result)
-      this.project = undefined;
-    })
+      this._snackBar.open('Project Removed Successfully', 'Undo', { duration: 3000 });
+    });
   }
 
-  delete() {
+  deleteProject() {
     this.projectService.delete(this.project._id).subscribe( result => {
-      console.log(result);
-      this.openSnackBar('Successfully removed.');
+      this._snackBar.open('Project Removed Successfully', 'Undo', { duration: 3000 });
     })
   }
 
@@ -91,6 +96,10 @@ export class ProjectComponent implements OnInit {
       duration: 5000,
       data: message
     });
+  }
+
+  updateProject() {
+    this.getTasks(this.project.tasks);
   }
 
 }

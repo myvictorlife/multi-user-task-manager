@@ -25,12 +25,19 @@ export class LoginComponent implements OnInit {
 
   initForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['victorcmggg@gmail.com', [Validators.required, Validators.email]],
-      password: ['123456', [Validators.required, Validators.minLength(6)]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   authentication() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
+
     const { email, password } = this.loginForm.value
     this.userService.authentication(email, password).subscribe( (result: UserResponse) => {
       this.tokenService.saveToken(result.token);
@@ -39,7 +46,7 @@ export class LoginComponent implements OnInit {
     }, error => {
       console.log(error)
       this.openSnackBar(error ? error.error.error : 'Server Error');
-    })
+    });
   }
 
   openSnackBar(message: string) {

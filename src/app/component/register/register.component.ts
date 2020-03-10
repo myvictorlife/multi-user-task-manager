@@ -61,6 +61,6 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['/dashboard']);
     }, error => {
       this.openSnackBar(error ? error.error.error : 'Server Error');
-    })
+    });
   }
 }

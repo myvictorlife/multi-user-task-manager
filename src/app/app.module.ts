@@ -25,6 +25,7 @@ import { reducers, metaReducers } from './reducers';
 import { TaskComponent } from './component/task/task.component';
 import { EditProjectComponent } from './component/dialogs/edit-project/edit-project.component';
 import { MaterialModule } from './material/material.module';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { MaterialModule } from './material/material.module';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
