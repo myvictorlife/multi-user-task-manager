@@ -1,6 +1,8 @@
 {
   "name": "multi-user-task-manager",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "This challenge involves the creation of a multi-user task manager web application.",
+  "author": "Victor Cesar",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
