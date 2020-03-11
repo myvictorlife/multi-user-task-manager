@@ -11,7 +11,7 @@ export class TokenService {
    }
 
   saveToken(token: string) {
-    localStorage.setItem('token', token)
+    localStorage.setItem('token', token);
   }
 
   getToken() {

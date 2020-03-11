@@ -2,27 +2,29 @@
 <div align="center" class="center" fxFlex="33" fxFlex.sm="100" fxFlex.xs="100">
   <mat-card class="box" >
     <mat-card-header>
-      <mat-card-title>Log in</mat-card-title>
+      <mat-card-title class="text-center" translate>Welcome</mat-card-title>
     </mat-card-header>
 
     <form [formGroup]="loginForm" (ngSubmit)="authentication()" fxLayout="column" >
       <mat-form-field>
         <mat-label translate>Login.Email</mat-label>
         <input matInput formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Email">
-        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required" translate>Login.EmailMustBaValidEmailAddress</div>
-        </div>
+        <mat-error *ngIf="submitted && f.email.errors">
+          <div *ngIf="f.email.errors.required" translate>Login.EmailMustBaValidEmailAddress</div>
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label translate>Login.Password</mat-label>
         <input matInput formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Password">
-        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-          <div *ngIf="f.password.errors.required" translate>Login.PasswordIsRequired</div>
-          <div *ngIf="f.password.errors.minlength" translate>Login.PasswordMustBeAtLeast6Characters</div>
-        </div>
+        <mat-error *ngIf="submitted && f.email.errors">
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required" translate>Login.PasswordIsRequired</div>
+            <div *ngIf="f.password.errors.minlength" translate>Login.PasswordMustBeAtLeast6Characters</div>
+          </div>
+        </mat-error>
       </mat-form-field>
-
+      <br/>
       <div class="form-group">
         <button mat-stroked-button  type="submit">{{ 'Login.Enter' | translate}}</button>
       </div>

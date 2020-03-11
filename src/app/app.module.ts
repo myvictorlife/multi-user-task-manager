@@ -29,6 +29,7 @@ import { MaterialModule } from './material/material.module';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { EditTaskComponent } from './component/dialogs/edit-task/edit-task.component';
+import { ConfirmComponent } from './component/dialogs/confirm/confirm.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -48,7 +49,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TaskComponent,
     ProjectComponent,
     EditProjectComponent,
-    EditTaskComponent
+    EditTaskComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,

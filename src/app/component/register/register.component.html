@@ -9,36 +9,38 @@
         <mat-form-field>
           <mat-label translate>Register.Name</mat-label>
           <input matInput formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" placeholder="Name">
-          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-              <div *ngIf="f.name.errors.required">First Name is required</div>
-          </div>
+          <mat-error *ngIf="submitted && f.email.errors">
+            <div *ngIf="f.name.errors.required">First Name is required</div>
+          </mat-error>
+
         </mat-form-field>
 
         <mat-form-field>
           <mat-label translate>Register.Email</mat-label>
           <input matInput formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Email">
-          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required" translate>Register.EmailMustBaValidEmailAddress</div>
-          </div>
+          <mat-error *ngIf="submitted && f.email.errors">
+            <div *ngIf="f.email.errors.required" translate>Register.EmailMustBaValidEmailAddress</div>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label translate>Register.Password</mat-label>
           <input matInput formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Password">
-          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <mat-error *ngIf="submitted && f.password.errors">
             <div *ngIf="f.password.errors.required" translate>Register.PasswordIsRequired</div>
             <div *ngIf="f.password.errors.minlength" translate>Register.PasswordMustBeAtLeast6Characters</div>
-          </div>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label translate>Register.ConfirmPassword</mat-label>
           <input matInput formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Confirm Password">
-          <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+          <mat-error *ngIf="submitted && f.confirmPassword.errors">
             <div *ngIf="f.confirmPassword.errors.required" translate>Register.ConfirmPasswordIsRequired</div>
             <div *ngIf="f.confirmPassword.errors.mustMatch" translate>Register.PasswordsMustMatch</div>
-        </div>
+          </mat-error>
         </mat-form-field>
+        <br/>
         <div class="form-group">
         <button mat-stroked-button  type="submit" >{{ 'Register.Title' | translate}}</button>
         </div>

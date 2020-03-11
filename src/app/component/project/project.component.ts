@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditProjectComponent } from '../dialogs/edit-project/edit-project.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
+import { ConfirmComponent } from '../dialogs/confirm/confirm.component';
 
 @Component({
   selector: 'app-project',
@@ -77,7 +78,7 @@ export class ProjectComponent implements OnInit {
   deleteProject() {
     this.projectService.delete(this.project._id).subscribe( result => {
       this.nackBar.open('Project Removed Successfully', 'Undo', { duration: 3000 });
-    })
+    });
   }
 
   openDialogToEdit(): void {
@@ -89,6 +90,20 @@ export class ProjectComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.edit(result);
+    });
+  }
+
+  openDialogConfirm(): void {
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: '250px',
+      data: { headerName: 'Remove', title: `Remove ${this.project.title}?` }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if (result === 'yes'){
+        this.deleteProject();
+      }
     });
   }
 
