@@ -16,6 +16,9 @@ The application should include the following features:
 # Plugins
 1. ngx-translate = The internationalization (i18n) library for Angular.
 2. rxjs = RxJS is a library for reactive programming using Observables
+3. material = UI component infrastructure and Material Design components for mobile and desktop Angular web applications.
+4. Flex-Layout = Angular Flex Layout provides a sophisticated layout API using Flexbox CSS + mediaQuery.
+5. ngrx/store = Store is RxJS powered state management for Angular applications, inspired by Redux.
 
 # Config Environments
 * Base URL: 'http://localhost:3000'
