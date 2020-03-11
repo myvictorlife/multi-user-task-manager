@@ -13,6 +13,10 @@ The application should include the following features:
 3. Visualize, add, edit and remove user projects
 4. Visualize, add, edit and remove tasks associated with the projects
 
+# Plugins
+1. ngx-translate = The internationalization (i18n) library for Angular.
+2. rxjs = RxJS is a library for reactive programming using Observables
+
 # Config Environments
 * Base URL: 'http://localhost:3000'
 
